@@ -18,30 +18,46 @@
 <body>
   <header>
     <div class="container">
-      <h1>Code Journal</h1>
+      <h1 class="code-journal">Code Journal</h1>
     </div>
   </header>
   <main class="container">
     <div data-view="entry-form">
       <form action="">
-        <h1>New Entry</h1>
-        <div>
-          <img src="images/placeholder-image-square.jpg" alt="placeholder">
+        <div class="row">
+          <div class="column-full">
+            <h1>New Entry</h1>
+          </div>
         </div>
-        <label for="title">Title</label>
-        <div>
-          <input type="text" id="title" name="title">
+        <div class="row">
+          <div class="column-half">
+            <div class="image-container">
+              <img src="images/placeholder-image-square.jpg" alt="placeholder">
+            </div>
+          </div>
+          <div class="column-half">
+            <label for="title">Title</label>
+            <div>
+              <input type="text" id="title" name="title" size="46">
+            </div>
+            <label for="photourl">Photo URL</label>
+            <div>
+              <input type="text" id="photourl" name="photourl" size="46">
+            </div>
+          </div>
         </div>
-        <label for="photourl">Photo URL</label>
-        <div>
-          <input type="text" id="photourl" name="photourl">
-        </div>
-        <label for="textarea">Notes</label>
-        <div>
-          <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
+        <div class="row-bottom">
+          <div class="column-full">
+            <label for="textarea">Notes</label>
+            <div>
+              <textarea name="textarea" id="textarea" cols="42" rows="10"></textarea>
+            </div>
+          </div>
         </div>
         <label for="submit"></label>
-        <input type="submit" value="Submit">
+        <div class="save-container">
+          <input type="submit" value="SAVE" class="save">
+        </div>
       </form>
     </div>
     <div data-view="entries" class="hidden"></div>
