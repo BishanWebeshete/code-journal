@@ -61,6 +61,21 @@ label {
   font-size: 1.1rem;
 }
 
+.one-row {
+  display: flex;
+}
+
+.new-button {
+  margin-left: 12rem;
+  margin-top: 1.3rem;
+  margin-bottom: 1.3rem;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  background-color: #562b81;
+  color: white;
+  border-radius: 10px;
+}
+
 @media screen and (min-width: 768px) {
   textarea {
     padding-right: 22.5rem;
@@ -68,6 +83,14 @@ label {
 
   .code-journal {
     padding-left: 1rem;
+  }
+
+  .new-button {
+    margin-left: 36rem;
+  }
+
+  li {
+    margin-bottom: 3rem;
   }
 }
 
