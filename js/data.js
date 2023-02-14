@@ -6,3 +6,8 @@ var data = {
   editing: null,
   nextEntryId: 1
 };
+
+window.addEventListener('beforeunload', function (event) {
+  var stringifiedData = JSON.stringify(data);
+  this.localStorage.setItem('javascript-local-storage', stringifiedData);
+});
