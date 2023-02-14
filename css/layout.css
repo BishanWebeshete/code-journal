@@ -31,4 +31,9 @@
   .column-half {
     width: 50%;
   }
+
+  .row {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 }
