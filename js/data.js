@@ -7,7 +7,13 @@ var data = {
   nextEntryId: 1
 };
 
+var previousData = localStorage.getItem('javascript-local-storage');
+
+if (previousData !== null) {
+  data = JSON.parse(previousData);
+}
+
 window.addEventListener('beforeunload', function (event) {
   var stringifiedData = JSON.stringify(data);
-  this.localStorage.setItem('javascript-local-storage', stringifiedData);
+  localStorage.setItem('javascript-local-storage', stringifiedData);
 });
