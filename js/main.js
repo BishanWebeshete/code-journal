@@ -15,7 +15,7 @@ $form.addEventListener('submit', function (event) {
     entryId: data.nextEntryId
   };
   data.nextEntryId++;
-  data.entries.push($formInfo);
+  data.entries.unshift($formInfo);
   $img.setAttribute('src', 'images/placeholder-image-sqaure.jpg');
   $form.reset();
 });

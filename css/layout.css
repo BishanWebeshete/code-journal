@@ -36,12 +36,4 @@
     display: flex;
     flex-wrap: nowrap;
   }
-
-  textarea {
-    padding-right: 22.5rem;
-  }
-
-  .code-journal {
-    padding-left: 1rem;
-  }
 }
