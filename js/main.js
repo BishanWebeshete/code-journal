@@ -52,6 +52,28 @@ function renderEntry(entry) {
 
 var $ul = document.querySelector('ul');
 
+function toggleNoEntries() {
+  var $noEntriesText = document.querySelector('.no-entries-text');
+  if ($noEntriesText.className === 'hidden') {
+    $noEntriesText.className = '.no-entries-text';
+  } else if ($noEntriesText.className === 'no-entries-text') {
+    $noEntriesText.className = 'hidden';
+  }
+}
+toggleNoEntries();
+
+function viewSwap(view) {
+  data.view = view;
+  var $entryForm = document.querySelector('.entry-form');
+  var $entries = document.querySelector('.entries');
+  if (view === 'entry-form') {
+    $entries.classList.add('hidden');
+  } else if (view === 'entries') {
+    $entryForm.classList.add('hidden');
+  }
+}
+viewSwap();
+
 document.addEventListener('DOMContentLoaded', function (event) {
   data.entries.forEach(entry => {
     $ul.append(renderEntry(entry));

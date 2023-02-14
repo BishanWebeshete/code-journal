@@ -76,6 +76,10 @@ label {
   border-radius: 10px;
 }
 
+.no-entries-text {
+  text-align: center;
+}
+
 @media screen and (min-width: 768px) {
   textarea {
     padding-right: 22.5rem;
