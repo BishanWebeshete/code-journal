@@ -78,6 +78,25 @@ function renderEntry(entry) {
 
 var $ul = document.querySelector('ul');
 
+$ul.addEventListener('click', function (event) {
+  var $closestLi = event.target.closest('li');
+  if (!event.target.matches('i')) {
+    return null;
+  } else {
+    for (let i = 0; i < data.entries.length; i++) {
+      if (Number($closestLi.getAttribute('data-entry-id')) === data.entries[i].entryId) {
+        data.editing = data.entries[i];
+      }
+      $form.elements.title.value = data.editing.title;
+      $form.elements.photourl.value = data.editing.photoUrl;
+      $form.elements.textarea.value = data.editing.notes;
+      var $idTitle = document.getElementById('entry-title');
+      $idTitle.textContent = 'Edit Entry';
+      viewSwap('entry-form');
+    }
+  }
+});
+
 function toggleNoEntries() {
   var $noEntriesText = document.querySelector('.no-entries-text');
   if (data.entries.length === 0) {
