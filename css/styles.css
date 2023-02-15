@@ -12,6 +12,7 @@ img {
 .container {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 body {
@@ -60,6 +61,50 @@ label {
   font-size: 1.1rem;
 }
 
+.one-row {
+  display: flex;
+}
+
+.new-button {
+  margin-left: 12rem;
+  margin-top: 1.3rem;
+  margin-bottom: 1.3rem;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  background-color: #562b81;
+  color: white;
+  border-radius: 10px;
+}
+
+.no-entries-text {
+  text-align: center;
+}
+
+.anchor-tag {
+  color: white;
+  margin-top: 0.7rem;
+  margin-left: 2rem;
+  text-decoration: none;
+}
+
+.new-container {
+  margin-top: 2rem;
+  margin-left: 13rem;
+}
+
+#entry-form-tag {
+  background-color: #562b81;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+
+.entries {
+  width: 100%;
+}
+
 @media screen and (min-width: 768px) {
   textarea {
     padding-right: 22.5rem;
@@ -68,4 +113,17 @@ label {
   .code-journal {
     padding-left: 1rem;
   }
+
+  li {
+    margin-bottom: 3rem;
+  }
+
+  #entry-form-tag {
+    margin-left: 22rem;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
 }
