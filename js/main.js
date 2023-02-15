@@ -55,13 +55,23 @@ function renderEntry(entry) {
   $secondColumnDiv.className = 'column-half';
   $rowDiv.appendChild($secondColumnDiv);
 
+  var $iconContainer = document.createElement('div');
+  $iconContainer.className = 'title-icon-container';
+  $secondColumnDiv.appendChild($iconContainer);
+
   var $h2Element = document.createElement('h2');
   $h2Element.textContent = entry.title;
-  $secondColumnDiv.appendChild($h2Element);
+  $iconContainer.appendChild($h2Element);
+
+  var $iconElement = document.createElement('i');
+  $iconElement.className = 'fa fa-pencil edit - icon';
+  $h2Element.appendChild($iconElement);
 
   var $pElement = document.createElement('p');
   $pElement.textContent = entry.notes;
   $secondColumnDiv.appendChild($pElement);
+
+  $liElement.setAttribute('data-entry-id', entry.entryId);
 
   return $liElement;
 }
