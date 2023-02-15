@@ -19,10 +19,11 @@
   <header>
     <div class="container">
       <h1 class="code-journal">Code Journal</h1>
+      <a class="anchor-tag" href="#entries">Entries</a>
     </div>
   </header>
   <main class="container">
-    <div class="entry-form" data-view="entry-form">
+    <div class="entry-form" data-view="entry-form" id="entry-form">
       <form action="">
         <div class="row">
           <div class="column-full">
@@ -60,15 +61,12 @@
         </div>
       </form>
     </div>
-    <div data-view="entries" class="entries">
-      <header>
-        <div class="container">
-          <h1 class="code-journal">Code Journal Entries</h1>
-        </div>
-      </header>
+    <div data-view="entries" class="entries" id="entries">
       <div class="one-row">
         <h1>Entries</h1>
-        <button class="new-button">New</button>
+        <div class="new-container">
+          <a href="#entry-form" id="entry-form-tag" >New</a>
+        </div>
       </div>
       <div>
         <p class="no-entries-text">No entries have been recorded.</p>

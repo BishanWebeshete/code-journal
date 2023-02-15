@@ -18,6 +18,14 @@ $form.addEventListener('submit', function (event) {
   data.entries.unshift($formInfo);
   $img.setAttribute('src', 'images/placeholder-image-sqaure.jpg');
   $form.reset();
+
+  renderEntry($formInfo);
+  $ul.prepend(renderEntry($formInfo));
+  viewSwap('entries');
+
+  if (!data.entries) {
+    toggleNoEntries();
+  }
 });
 
 function renderEntry(entry) {
@@ -60,7 +68,6 @@ function toggleNoEntries() {
     $noEntriesText.className = 'hidden';
   }
 }
-toggleNoEntries();
 
 function viewSwap(view) {
   data.view = view;
@@ -72,7 +79,6 @@ function viewSwap(view) {
     $entryForm.classList.add('hidden');
   }
 }
-viewSwap();
 
 document.addEventListener('DOMContentLoaded', function (event) {
   data.entries.forEach(entry => {
