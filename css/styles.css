@@ -46,6 +46,7 @@ input {
 .save-container {
   display: flex;
   justify-content: flex-end;
+  padding-left: 12rem;
 }
 
 textarea {
@@ -111,6 +112,21 @@ i {
   padding-right: 1rem;
 }
 
+.delete-button {
+  border: none;
+  text-decoration: underline;
+  font-size: 0.83rem;
+  color: #dc2626;
+}
+
+.save-delete-container {
+  display: flex;
+}
+
+.delete-container {
+  padding-top: 1rem;
+}
+
 @media screen and (min-width: 768px) {
   textarea {
     padding-right: 22.5rem;
@@ -126,6 +142,10 @@ i {
 
   #entry-form-tag {
     margin-left: 22rem;
+  }
+
+  .save-container {
+    padding-left: 35.5rem;
   }
 }
 

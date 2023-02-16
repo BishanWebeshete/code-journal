@@ -110,6 +110,8 @@ $ul.addEventListener('click', function (event) {
         $form.elements.textarea.value = data.editing.notes;
         $idTitle.textContent = 'Edit Entry';
         viewSwap('entry-form');
+        var $buttonElement = document.querySelector('button');
+        $buttonElement.classList.remove('hidden-button');
       }
     }
   }
