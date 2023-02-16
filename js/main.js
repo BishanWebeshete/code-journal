@@ -35,7 +35,6 @@ $form.addEventListener('submit', function (event) {
     data.nextEntryId++;
     data.entries.unshift($formInfo);
     $img.setAttribute('src', '/images/placeholder-image-square.jpg');
-    $form.reset();
     $ul.prepend(renderEntry($formInfo));
   } else {
     $formInfo.entryId = data.editing.entryId;
@@ -54,7 +53,7 @@ $form.addEventListener('submit', function (event) {
     data.editing = null;
   }
   viewSwap('entries');
-
+  $form.reset();
 });
 
 function renderEntry(entry) {
