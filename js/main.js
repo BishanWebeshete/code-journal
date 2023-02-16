@@ -4,6 +4,7 @@ var $form = document.querySelector('form');
 var $entriesNav = document.querySelector('.entries-nav');
 var $newEntryButton = document.querySelector('#entry-form-tag');
 var $idTitle = document.getElementById('entry-title');
+var $ul = document.querySelector('ul');
 
 $newEntryButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -95,8 +96,6 @@ function renderEntry(entry) {
 
   return $liElement;
 }
-
-var $ul = document.querySelector('ul');
 
 $ul.addEventListener('click', function (event) {
   var $closestLi = event.target.closest('li');
