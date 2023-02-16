@@ -3,9 +3,14 @@ var $img = document.querySelector('img');
 var $form = document.querySelector('form');
 var $entriesNav = document.querySelector('.entries-nav');
 var $newEntryButton = document.querySelector('#entry-form-tag');
+var $idTitle = document.getElementById('entry-title');
+var $ul = document.querySelector('ul');
 
 $newEntryButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  $form.reset();
   viewSwap('entry-form');
+  $idTitle.textContent = 'New Entry';
 });
 
 $entriesNav.addEventListener('click', function (event) {
@@ -24,16 +29,32 @@ $form.addEventListener('submit', function (event) {
     notes: $form.elements.textarea.value,
     entryId: data.nextEntryId
   };
-  data.nextEntryId++;
-  data.entries.unshift($formInfo);
-  $img.setAttribute('src', '/images/placeholder-image-square.jpg');
-  $form.reset();
-
-  renderEntry($formInfo);
-  $ul.prepend(renderEntry($formInfo));
-  viewSwap('entries');
 
   toggleNoEntries();
+
+  if (data.editing === null) {
+    data.nextEntryId++;
+    data.entries.unshift($formInfo);
+    $img.setAttribute('src', '/images/placeholder-image-square.jpg');
+    $ul.prepend(renderEntry($formInfo));
+  } else {
+    $formInfo.entryId = data.editing.entryId;
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === $formInfo.entryId) {
+        data.entries[i] = $formInfo;
+      }
+    }
+    var $editedEntry = renderEntry($formInfo);
+    var $liElements = document.querySelectorAll('li');
+    for (let i = 0; i < $liElements.length; i++) {
+      if (Number($liElements[i].getAttribute('data-entry-id')) === data.editing.entryId) {
+        $liElements[i].replaceWith($editedEntry);
+      }
+    }
+    data.editing = null;
+  }
+  viewSwap('entries');
+  $form.reset();
 });
 
 function renderEntry(entry) {
@@ -55,18 +76,44 @@ function renderEntry(entry) {
   $secondColumnDiv.className = 'column-half';
   $rowDiv.appendChild($secondColumnDiv);
 
+  var $iconContainer = document.createElement('div');
+  $iconContainer.className = 'title-icon-container';
+  $secondColumnDiv.appendChild($iconContainer);
+
   var $h2Element = document.createElement('h2');
   $h2Element.textContent = entry.title;
-  $secondColumnDiv.appendChild($h2Element);
+  $iconContainer.appendChild($h2Element);
+
+  var $iconElement = document.createElement('i');
+  $iconElement.className = 'fa fa-pencil edit - icon';
+  $h2Element.appendChild($iconElement);
 
   var $pElement = document.createElement('p');
   $pElement.textContent = entry.notes;
   $secondColumnDiv.appendChild($pElement);
 
+  $liElement.setAttribute('data-entry-id', entry.entryId);
+
   return $liElement;
 }
 
-var $ul = document.querySelector('ul');
+$ul.addEventListener('click', function (event) {
+  var $closestLi = event.target.closest('li');
+  if (!event.target.matches('i')) {
+    return null;
+  } else {
+    for (let i = 0; i < data.entries.length; i++) {
+      if (Number($closestLi.getAttribute('data-entry-id')) === data.entries[i].entryId) {
+        data.editing = data.entries[i];
+        $form.elements.title.value = data.editing.title;
+        $form.elements.photourl.value = data.editing.photoUrl;
+        $form.elements.textarea.value = data.editing.notes;
+        $idTitle.textContent = 'Edit Entry';
+        viewSwap('entry-form');
+      }
+    }
+  }
+});
 
 function toggleNoEntries() {
   var $noEntriesText = document.querySelector('.no-entries-text');
