@@ -3,9 +3,13 @@ var $img = document.querySelector('img');
 var $form = document.querySelector('form');
 var $entriesNav = document.querySelector('.entries-nav');
 var $newEntryButton = document.querySelector('#entry-form-tag');
+var $idTitle = document.getElementById('entry-title');
 
 $newEntryButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  $form.reset();
   viewSwap('entry-form');
+  $idTitle.textContent = 'New Entry';
 });
 
 $entriesNav.addEventListener('click', function (event) {
@@ -24,16 +28,33 @@ $form.addEventListener('submit', function (event) {
     notes: $form.elements.textarea.value,
     entryId: data.nextEntryId
   };
-  data.nextEntryId++;
-  data.entries.unshift($formInfo);
-  $img.setAttribute('src', '/images/placeholder-image-square.jpg');
-  $form.reset();
-
-  renderEntry($formInfo);
-  $ul.prepend(renderEntry($formInfo));
-  viewSwap('entries');
 
   toggleNoEntries();
+
+  if (data.editing === null) {
+    data.nextEntryId++;
+    data.entries.unshift($formInfo);
+    $img.setAttribute('src', '/images/placeholder-image-square.jpg');
+    $form.reset();
+    $ul.prepend(renderEntry($formInfo));
+  } else {
+    $formInfo.entryId = data.editing.entryId;
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === $formInfo.entryId) {
+        data.entries[i] = $formInfo;
+      }
+    }
+    var $editedEntry = renderEntry($formInfo);
+    var $liElements = document.querySelectorAll('li');
+    for (let i = 0; i < $liElements.length; i++) {
+      if (Number($liElements[i].getAttribute('data-entry-id')) === data.editing.entryId) {
+        $liElements[i].replaceWith($editedEntry);
+      }
+    }
+    data.editing = null;
+  }
+  viewSwap('entries');
+
 });
 
 function renderEntry(entry) {
@@ -86,13 +107,12 @@ $ul.addEventListener('click', function (event) {
     for (let i = 0; i < data.entries.length; i++) {
       if (Number($closestLi.getAttribute('data-entry-id')) === data.entries[i].entryId) {
         data.editing = data.entries[i];
+        $form.elements.title.value = data.editing.title;
+        $form.elements.photourl.value = data.editing.photoUrl;
+        $form.elements.textarea.value = data.editing.notes;
+        $idTitle.textContent = 'Edit Entry';
+        viewSwap('entry-form');
       }
-      $form.elements.title.value = data.editing.title;
-      $form.elements.photourl.value = data.editing.photoUrl;
-      $form.elements.textarea.value = data.editing.notes;
-      var $idTitle = document.getElementById('entry-title');
-      $idTitle.textContent = 'Edit Entry';
-      viewSwap('entry-form');
     }
   }
 });
