@@ -8,6 +8,7 @@ var $ul = document.querySelector('ul');
 var $deleteButtonElement = document.getElementById('delete-button');
 var $modalContainer = document.getElementById('modal-container');
 var $cancelButton = document.querySelector('.cancel-button');
+var $confirmButton = document.querySelector('.confirm-button');
 
 $newEntryButton.addEventListener('click', function (event) {
   event.preventDefault();
@@ -148,6 +149,18 @@ $deleteButtonElement.addEventListener('click', function (event) {
 
 $cancelButton.addEventListener('click', function (event) {
   $modalContainer.classList.add('hidden');
+});
+
+$confirmButton.addEventListener('click', function (event) {
+  // loop through entries
+  // check if data entry is equal to editing entry
+  // if so, remove..
+  // remove from dom using entry-id
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.editing === data.entries[i]) {
+      data.entries.splice(i, 1);
+    }
+  }
 });
 
 document.addEventListener('DOMContentLoaded', function (event) {
