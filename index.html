@@ -58,7 +58,7 @@
         <label for="submit"></label>
         <div class="save-delete-container">
           <div class="delete-container">
-            <button class="delete-button hidden-button">Delete Entry</button>
+            <button type="button" class="delete-button hidden-button" id="delete-button">Delete Entry</button>
           </div>
           <div class="save-container">
             <input type="submit" value="SAVE" class="save">
@@ -78,6 +78,15 @@
       </div>
       <ul class="column-full">
       </ul>
+    </div>
+    <div class="modal-container hidden" id="modal-container">
+      <div class="modal-content">
+        <h4>Are you sure you want to delete this entry?</h4>
+        <div class="modal-buttons">
+          <button type="button" class="cancel-button">CANCEL</button>
+          <button type="button" class="confirm-button">CONFIRM</button>
+        </div>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>

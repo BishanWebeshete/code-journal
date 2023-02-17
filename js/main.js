@@ -5,12 +5,16 @@ var $entriesNav = document.querySelector('.entries-nav');
 var $newEntryButton = document.querySelector('#entry-form-tag');
 var $idTitle = document.getElementById('entry-title');
 var $ul = document.querySelector('ul');
+var $deleteButtonElement = document.getElementById('delete-button');
+var $modalContainer = document.getElementById('modal-container');
+var $cancelButton = document.querySelector('.cancel-button');
 
 $newEntryButton.addEventListener('click', function (event) {
   event.preventDefault();
   $form.reset();
   viewSwap('entry-form');
   $idTitle.textContent = 'New Entry';
+  $deleteButtonElement.classList.add('hidden-button');
 });
 
 $entriesNav.addEventListener('click', function (event) {
@@ -110,8 +114,7 @@ $ul.addEventListener('click', function (event) {
         $form.elements.textarea.value = data.editing.notes;
         $idTitle.textContent = 'Edit Entry';
         viewSwap('entry-form');
-        var $buttonElement = document.querySelector('button');
-        $buttonElement.classList.remove('hidden-button');
+        $deleteButtonElement.classList.remove('hidden-button');
       }
     }
   }
@@ -138,6 +141,14 @@ function viewSwap(view) {
   }
   data.view = view;
 }
+
+$deleteButtonElement.addEventListener('click', function (event) {
+  $modalContainer.classList.remove('hidden');
+});
+
+$cancelButton.addEventListener('click', function (event) {
+  $modalContainer.classList.add('hidden');
+});
 
 document.addEventListener('DOMContentLoaded', function (event) {
   data.entries.forEach(entry => {
