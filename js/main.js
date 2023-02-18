@@ -152,13 +152,15 @@ $cancelButton.addEventListener('click', function (event) {
 });
 
 $confirmButton.addEventListener('click', function (event) {
-  // loop through entries
-  // check if data entry is equal to editing entry
-  // if so, remove..
-  // remove from dom using entry-id
+  $modalContainer.classList.add('hidden');
+  viewSwap('entries');
   for (let i = 0; i < data.entries.length; i++) {
     if (data.editing === data.entries[i]) {
       data.entries.splice(i, 1);
+      data.nextEntryId--;
+      var $removeableElementId = data.entries[i].getAttribute('data-entry-id');
+      var $removeableElement = document.getElementById($removeableElementId);
+      $ul.removeChild($removeableElement);
     }
   }
 });
