@@ -41,7 +41,7 @@ $form.addEventListener('submit', function (event) {
     data.nextEntryId++;
     data.entries.unshift($formInfo);
     $img.setAttribute('src', '/images/placeholder-image-square.jpg');
-    $ul.prepend(renderEntry($formInfo));
+    $ul.prepend(renderEntry(data.entries[0]));
   } else {
     $formInfo.entryId = data.editing.entryId;
     for (let i = 0; i < data.entries.length; i++) {
@@ -152,17 +152,16 @@ $cancelButton.addEventListener('click', function (event) {
 });
 
 $confirmButton.addEventListener('click', function (event) {
+  var $li = document.querySelectorAll('li');
   $modalContainer.classList.add('hidden');
-  viewSwap('entries');
   for (let i = 0; i < data.entries.length; i++) {
     if (data.editing === data.entries[i]) {
       data.entries.splice(i, 1);
-      data.nextEntryId--;
-      var $removeableElementId = data.entries[i].getAttribute('data-entry-id');
-      var $removeableElement = document.getElementById($removeableElementId);
-      $ul.removeChild($removeableElement);
+      $ul.removeChild($li[i]);
     }
   }
+  data.editing = null;
+  viewSwap('entries');
 });
 
 document.addEventListener('DOMContentLoaded', function (event) {

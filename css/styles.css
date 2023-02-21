@@ -176,11 +176,17 @@ i {
   }
 
   #entry-form-tag {
-    margin-left: 22rem;
+    margin-right: 2rem;
   }
 
-  .save-container {
-    padding-left: 35.5rem;
+  .one-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .save-delete-container {
+    justify-content: space-between;
+    margin-right: 1rem;
   }
 }
 
