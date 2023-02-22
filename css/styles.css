@@ -46,6 +46,7 @@ input {
 .save-container {
   display: flex;
   justify-content: flex-end;
+  padding-left: 12rem;
 }
 
 textarea {
@@ -111,6 +112,56 @@ i {
   padding-right: 1rem;
 }
 
+.delete-button {
+  border: none;
+  text-decoration: underline;
+  font-size: 0.83rem;
+  color: #dc2626;
+}
+
+.save-delete-container {
+  display: flex;
+}
+
+.delete-container {
+  padding-top: 1rem;
+}
+
+.confirm-button {
+  margin-left: 8rem;
+  color: white;
+  background-color: #dc2626;
+  border-color: #dc2626;
+  padding: 0.5rem 0.6rem;
+  border-radius: 5px;
+}
+
+.cancel-button {
+  background-color: #b6b6b6;
+  border-color: #b6b6b6;
+  padding: 0.5rem 0.6rem;
+  border-radius: 5px;
+}
+
+.modal-container {
+  position: absolute;
+  display: flex;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  background-color: rgb(0 0 0 / 70%);
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  text-align: center;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+}
+
 @media screen and (min-width: 768px) {
   textarea {
     padding-right: 22.5rem;
@@ -125,7 +176,17 @@ i {
   }
 
   #entry-form-tag {
-    margin-left: 22rem;
+    margin-right: 2rem;
+  }
+
+  .one-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .save-delete-container {
+    justify-content: space-between;
+    margin-right: 1rem;
   }
 }
 

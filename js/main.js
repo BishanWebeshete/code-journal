@@ -5,12 +5,17 @@ var $entriesNav = document.querySelector('.entries-nav');
 var $newEntryButton = document.querySelector('#entry-form-tag');
 var $idTitle = document.getElementById('entry-title');
 var $ul = document.querySelector('ul');
+var $deleteButtonElement = document.getElementById('delete-button');
+var $modalContainer = document.getElementById('modal-container');
+var $cancelButton = document.querySelector('.cancel-button');
+var $confirmButton = document.querySelector('.confirm-button');
 
 $newEntryButton.addEventListener('click', function (event) {
   event.preventDefault();
   $form.reset();
   viewSwap('entry-form');
   $idTitle.textContent = 'New Entry';
+  $deleteButtonElement.classList.add('hidden-button');
 });
 
 $entriesNav.addEventListener('click', function (event) {
@@ -36,7 +41,7 @@ $form.addEventListener('submit', function (event) {
     data.nextEntryId++;
     data.entries.unshift($formInfo);
     $img.setAttribute('src', '/images/placeholder-image-square.jpg');
-    $ul.prepend(renderEntry($formInfo));
+    $ul.prepend(renderEntry(data.entries[0]));
   } else {
     $formInfo.entryId = data.editing.entryId;
     for (let i = 0; i < data.entries.length; i++) {
@@ -110,6 +115,7 @@ $ul.addEventListener('click', function (event) {
         $form.elements.textarea.value = data.editing.notes;
         $idTitle.textContent = 'Edit Entry';
         viewSwap('entry-form');
+        $deleteButtonElement.classList.remove('hidden-button');
       }
     }
   }
@@ -136,6 +142,27 @@ function viewSwap(view) {
   }
   data.view = view;
 }
+
+$deleteButtonElement.addEventListener('click', function (event) {
+  $modalContainer.classList.remove('hidden');
+});
+
+$cancelButton.addEventListener('click', function (event) {
+  $modalContainer.classList.add('hidden');
+});
+
+$confirmButton.addEventListener('click', function (event) {
+  var $li = document.querySelectorAll('li');
+  $modalContainer.classList.add('hidden');
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.editing === data.entries[i]) {
+      data.entries.splice(i, 1);
+      $ul.removeChild($li[i]);
+    }
+  }
+  data.editing = null;
+  viewSwap('entries');
+});
 
 document.addEventListener('DOMContentLoaded', function (event) {
   data.entries.forEach(entry => {
